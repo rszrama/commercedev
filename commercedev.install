@@ -429,4 +429,7 @@ function commercedev_install() {
     ->execute();
   variable_set('admin_theme', 'seven');
   variable_set('node_admin_theme', '1');
+
+  // Disable the Advanced Help module nag message until it's production ready.
+  variable_set('views_hide_help_message', TRUE);
 }

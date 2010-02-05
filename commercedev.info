@@ -24,6 +24,7 @@ dependencies[] = rdf
 ; Install other contributed modules first.
 dependencies[] = admin_menu
 dependencies[] = views
+dependencies[] = views_ui
 
 ; Install the Commerce modules.
 dependencies[] = commerce
