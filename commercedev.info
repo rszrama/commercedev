@@ -30,5 +30,6 @@ dependencies[] = views_ui
 dependencies[] = commerce
 dependencies[] = commerce_product
 dependencies[] = commerce_product_ui
+dependencies[] = commerce_product_reference
 
 files[] = commercedev.profile
