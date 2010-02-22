@@ -5,4 +5,7 @@ projects[] = "views"
 
 projects[commerce][type] = "module"
 projects[commerce][download][type] = "git"
-projects[commerce][download][url] = "http://github.com/mattfarina/drupalcommerce.git"
+
+; The following url will only work for me :). The following url should point to
+; your development snapshot of the commerce module.
+projects[commerce][download][url] = "git@github.com:mattfarina/drupalcommerce.git"
