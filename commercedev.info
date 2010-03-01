@@ -20,14 +20,17 @@ dependencies[] = shortcut
 dependencies[] = field_ui
 dependencies[] = file
 dependencies[] = rdf
+dependencies[] = simpletest
 
 ; Install other contributed modules first.
 dependencies[] = admin_menu
+dependencies[] = rules
 dependencies[] = views
 dependencies[] = views_ui
 
 ; Install the Commerce modules.
 dependencies[] = commerce
+dependencies[] = commerce_cart
 dependencies[] = commerce_product
 dependencies[] = commerce_product_ui
 dependencies[] = commerce_product_reference
