@@ -24,6 +24,7 @@ dependencies[] = simpletest
 
 ; Install other contributed modules first.
 dependencies[] = admin_menu
+dependencies[] = entity_metadata
 dependencies[] = rules
 dependencies[] = views
 dependencies[] = views_ui
