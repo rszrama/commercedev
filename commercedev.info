@@ -24,6 +24,7 @@ dependencies[] = simpletest
 
 ; Install other contributed modules first.
 dependencies[] = admin_menu
+dependencies[] = entity
 dependencies[] = entity_metadata
 dependencies[] = rules
 dependencies[] = views
@@ -32,6 +33,10 @@ dependencies[] = views_ui
 ; Install the Commerce modules.
 dependencies[] = commerce
 dependencies[] = commerce_cart
+dependencies[] = commerce_line_item
+dependencies[] = commerce_line_item_ui
+dependencies[] = commerce_order
+dependencies[] = commerce_order_ui
 dependencies[] = commerce_product
 dependencies[] = commerce_product_ui
 dependencies[] = commerce_product_reference
