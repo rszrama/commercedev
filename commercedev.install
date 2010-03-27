@@ -426,4 +426,13 @@ function commercedev_install() {
 
   // Disable the Advanced Help module nag message until it's production ready.
   variable_set('views_hide_help_message', TRUE);
+
+  // Create some dummy Commerce content.
+  foreach (array('01' => t('One'), '02' => t('Two'), '03' => t('Three')) as $key => $value) {
+    $product = commerce_product_new('product');
+    $product->sku = t('PROD-@num', array('@num' => $key));
+    $product->title = t('Product @num', array('@num' => $value));
+    $product->uid = 1;
+    commerce_product_save($product);
+  }
 }
