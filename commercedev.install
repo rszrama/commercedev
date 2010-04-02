@@ -270,10 +270,13 @@ function commercedev_install() {
   // Default "Basic page" to not be promoted and have comments disabled.
   variable_set('node_options_page', array('status'));
   variable_set('comment_page', COMMENT_NODE_HIDDEN);
-  variable_set('comment_product', COMMENT_NODE_HIDDEN);
 
   // Don't display date and author information for "Basic page" nodes by default.
   variable_set('node_submitted_page', FALSE);
+
+  // Update "Product" comment and author information settings.
+  variable_set('comment_product', COMMENT_NODE_HIDDEN);
+  variable_set('node_submitted_product', FALSE);
 
   // Enable user picture support and set the default to a square thumbnail option.
   variable_set('user_pictures', '1');
