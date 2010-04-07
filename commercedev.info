@@ -32,6 +32,7 @@ dependencies[] = views_ui
 
 ; Install the Commerce modules.
 dependencies[] = commerce
+dependencies[] = commerce_ui
 dependencies[] = commerce_cart
 dependencies[] = commerce_line_item
 dependencies[] = commerce_line_item_ui
