@@ -492,4 +492,17 @@ function commercedev_install() {
     $node->field_product[LANGUAGE_NONE][]['product_id'] = $product->product_id;
     node_save($node);
   }
+
+  // Set some default block positioning.
+  db_update('block')
+    ->fields(array('status' => 0))
+    ->condition('module', 'search')
+    ->condition('delta', 'form')
+    ->execute();
+
+  db_update('block')
+    ->fields(array('status' => 1, 'region' => 'sidebar_second'))
+    ->condition('module', 'commerce_cart')
+    ->condition('delta', 'cart')
+    ->execute();
 }
