@@ -217,7 +217,7 @@ function commercedev_install() {
       'type' => 'article',
       'name' => st('Article'),
       'base' => 'node_content',
-      'description' => st('Use <em>articles</em> for time-specific content like news, press releases or blog posts.'),
+      'description' => st('Use <em>articles</em> for time-sensitive content like news, press releases or blog posts.'),
       'custom' => 1,
       'modified' => 1,
       'locked' => 0,
@@ -256,7 +256,7 @@ function commercedev_install() {
           'predicates' => array('rdfs:seeAlso'),
           'type' => 'rel',
         ),
-        'taxonomy_tags' => array(
+        'field_tags' => array(
           'predicates' => array('dc:subject'),
           'type' => 'rel',
         ),
@@ -296,7 +296,7 @@ function commercedev_install() {
   taxonomy_vocabulary_save($vocabulary);
 
   $field = array(
-    'field_name' => 'taxonomy_' . $vocabulary->machine_name,
+    'field_name' => 'field_' . $vocabulary->machine_name,
     'type' => 'taxonomy_term_reference',
     // Set cardinality to unlimited for tagging.
     'cardinality' => FIELD_CARDINALITY_UNLIMITED,
@@ -312,8 +312,8 @@ function commercedev_install() {
   field_create_field($field);
 
   $instance = array(
-    'field_name' => 'taxonomy_' . $vocabulary->machine_name,
-    'object_type' => 'node',
+    'field_name' => 'field_' . $vocabulary->machine_name,
+    'entity_type' => 'node',
     'label' => $vocabulary->name,
     'bundle' => 'article',
     'description' => $vocabulary->help,
@@ -324,10 +324,46 @@ function commercedev_install() {
   );
   field_create_instance($instance);
 
+  // Create a default vocabulary named "Catalog", enabled for the 'product' content type.
+  $description = st('Describes a hierarchy for the product catalog.');
+  $vocabulary = (object) array(
+    'name' => 'Catalog',
+    'description' => $description,
+    'machine_name' => 'catalog',
+    'help' => '',
+  );
+  taxonomy_vocabulary_save($vocabulary);
+
+  $field = array(
+    'field_name' => 'taxonomy_' . $vocabulary->machine_name,
+    'type' => 'taxonomy_term_reference',
+    'cardinality' => 1,
+    'settings' => array(
+      'allowed_values' => array(
+        array(
+          'vid' => $vocabulary->vid,
+          'parent' => 0,
+        ),
+      ),
+    ),
+  );
+  field_create_field($field);
+
+  $instance = array(
+    'field_name' => 'taxonomy_' . $vocabulary->machine_name,
+    'entity_type' => 'node',
+    'label' => st('Catalog category'),
+    'bundle' => 'product',
+    'description' => '',
+    'widget' => array(
+      'type' => 'options_select',
+    ),
+  );
+  field_create_instance($instance);
 
   // Create an image field named "Image", enabled for the 'article' content type.
   // Many of the following values will be defaulted, they're included here as an illustrative examples.
-  // @see: http://api.drupal.org/api/function/field_create_field/7
+  // See http://api.drupal.org/api/function/field_create_field/7
 
   $field = array(
     'field_name' => 'field_image',
@@ -352,7 +388,7 @@ function commercedev_install() {
   // @see: http://api.drupal.org/api/function/field_create_instance/7
   $instance = array(
     'field_name' => 'field_image',
-    'object_type' => 'node',
+    'entity_type' => 'node',
     'label' => 'Image',
     'bundle' => 'article',
     'description' => 'Upload an image to go with this article.',
@@ -424,7 +460,7 @@ function commercedev_install() {
 
   $instance = array(
     'field_name' => 'field_product',
-    'object_type' => 'node',
+    'entity_type' => 'node',
     'label' => 'Product',
     'bundle' => 'product',
     'description' => 'Choose a product to display for sale.',
@@ -455,6 +491,7 @@ function commercedev_install() {
   // Create a default role for site administrators, with all available permissions assigned.
   $admin_role = new stdClass();
   $admin_role->name = 'administrator';
+  $admin_role->weight = 2;
   user_role_save($admin_role);
   user_role_grant_permissions($admin_role->rid, array_keys(module_invoke_all('permission')));
   // Set this as the administrator role.
@@ -475,6 +512,42 @@ function commercedev_install() {
   // Disable the Advanced Help module nag message until it's production ready.
   variable_set('views_hide_help_message', TRUE);
 
+  // Add a shortcut set for store administration.
+  $set = new stdClass;
+  $set->title = st('Store administration');
+  $set->links = array(
+    array('link_path' => 'admin/commerce/products/add', 'link_title' => st('Add product')),
+    array('link_path' => 'node/add/product', 'link_title' => st('Add product display')),
+    array('link_path' => 'node/add/tshirt', 'link_title' => st('Add t-shirt display')),
+    array('link_path' => 'admin/commerce/products', 'link_title' => st('View products')),
+    array('link_path' => 'admin/commerce/orders', 'link_title' => st('View orders')),
+    array('link_path' => 'admin/commerce/config', 'link_title' => st('Configure store')),
+  );
+  shortcut_set_save($set);
+
+  // Apply the shortcut set to the first user.
+  shortcut_set_assign_user($set, (object) array('uid' => 1));
+
+  // Create some dummy Catalog taxonomy terms.
+  /**
+   * TODO: Debug this code so it actually creates taxonomy terms.
+   *
+  $terms = array(
+    st('Coffee holders') => st('Porcelain mugs connecting your lips to the finest coffee your money can brew.'),
+    st('Conference swag') => st('Stuff to pick up at conferences and take home to your kids and left-behind office mates.'),
+    st('Wearables') => st('Hand-woven fabrics of the highest quality sporting the Commerce Guys name.'),
+  );
+
+  foreach ($terms as $name => $description) {
+    taxonomy_term_save((object) array(
+      'vid' => 2,
+      'name' => $name,
+      'description' => $description,
+      'format' => 2,
+    ));
+  }
+   **/
+
   // Create some dummy Commerce products and product nodes.
   foreach (array('01' => st('One'), '02' => st('Two'), '03' => st('Three')) as $key => $value) {
     // Create the new product.
@@ -482,6 +555,7 @@ function commercedev_install() {
     $product->sku = st('PROD-@num', array('@num' => $key));
     $product->title = st('Product @num', array('@num' => $value));
     $product->uid = 1;
+    $product->base_price[LANGUAGE_NONE][0]['price'] = $key * 10;
     $product = commerce_product_save($product);
 
     // Create a product node for it.
