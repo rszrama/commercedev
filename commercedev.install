@@ -556,6 +556,7 @@ function commercedev_install() {
     $product->title = st('Product @num', array('@num' => $value));
     $product->uid = 1;
     $product->base_price[LANGUAGE_NONE][0]['price'] = $key * 10;
+    $product->base_price[LANGUAGE_NONE][0]['currency_code'] = 'USD';
     $product = commerce_product_save($product);
 
     // Create a product node for it.
