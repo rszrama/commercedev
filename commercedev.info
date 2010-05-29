@@ -28,6 +28,7 @@ dependencies[] = admin_menu
 dependencies[] = entity
 dependencies[] = entity_metadata
 dependencies[] = rules
+dependencies[] = rules_admin
 dependencies[] = views
 dependencies[] = views_ui
 
