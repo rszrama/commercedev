@@ -236,6 +236,7 @@ function commercedev_install() {
   foreach ($types as $type) {
     $type = node_type_set_defaults($type);
     node_type_save($type);
+    node_add_body_field($type);
   }
 
   // Insert default pre-defined RDF mapping into the database.
@@ -385,7 +386,7 @@ function commercedev_install() {
 
 
   // Many of the following values will be defaulted, they're included here as an illustrative examples.
-  // @see: http://api.drupal.org/api/function/field_create_instance/7
+  // See http://api.drupal.org/api/function/field_create_instance/7
   $instance = array(
     'field_name' => 'field_image',
     'entity_type' => 'node',
@@ -448,6 +449,69 @@ function commercedev_install() {
   );
   field_create_instance($instance);
 
+  // Add a default image field to the basic product type.
+  $instance = array(
+    'field_name' => 'field_image',
+    'entity_type' => 'commerce_product',
+    'label' => 'Image',
+    'bundle' => 'product',
+    'description' => 'Upload an image for this product.',
+    'required' => FALSE,
+
+    'settings' => array(
+      'file_directory' => 'field/image',
+      'file_extensions' => 'png gif jpg jpeg',
+      'max_filesize' => '',
+      'max_resolution' => '',
+      'min_resolution' => '',
+      'alt_field' => TRUE,
+      'title_field' => '',
+    ),
+
+    'widget' => array(
+      'type' => 'image_image',
+      'settings' => array(
+        'progress_indicator' => 'throbber',
+        'preview_image_style' => 'thumbnail',
+      ),
+      'weight' => -1,
+    ),
+
+    'display' => array(
+      'full' => array(
+        'label' => 'hidden',
+        'type' => 'image_link_file__medium',
+        'settings' => array(),
+        'weight' => -1,
+      ),
+      'line_item' => array(
+        'label' => 'hidden',
+        'type' => 'image__thumbnail',
+        'settings' => array(),
+        'weight' => -1,
+      ),
+      'node_full' => array(
+        'label' => 'hidden',
+        'type' => 'image_link_file__medium',
+        'settings' => array(),
+        'weight' => -1,
+      ),
+      'node_teaser' => array(
+        'label' => 'hidden',
+        'type' => 'image_link_content__thumbnail',
+        'settings' => array(),
+        'weight' => -1,
+      ),
+      'node_rss' => array(
+        'label' => 'hidden',
+        'type' => 'image__medium',
+        'settings' => array(),
+        'weight' => -1,
+      ),
+    ),
+  );
+  field_create_instance($instance);
+
   // Add a product reference field to the product node type.
   $field = array(
     'field_name' => 'field_product',
@@ -496,6 +560,11 @@ function commercedev_install() {
   user_role_grant_permissions($admin_role->rid, array_keys(module_invoke_all('permission')));
   // Set this as the administrator role.
   variable_set('user_admin_role', $admin_role->rid);
+
+  // Assign user 1 the "administrator" role.
+  db_insert('users_roles')
+    ->fields(array('uid' => 1, 'rid' => $admin_role->rid))
+    ->execute();
 
   // Update the menu router information.
   menu_rebuild();
