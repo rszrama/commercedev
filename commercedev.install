@@ -61,12 +61,17 @@ function commercedev_install() {
   $full_html_format = (object) $full_html_format;
   filter_format_save($full_html_format);
 
+  // Set the default theme to Garland.
+  variable_set('theme_default', 'garland');
+
   // Enable some standard blocks.
+  $default_theme = 'garland';
+  $admin_theme = 'seven';
   $values = array(
     array(
       'module' => 'system',
       'delta' => 'main',
-      'theme' => 'garland',
+      'theme' => $default_theme,
       'status' => 1,
       'weight' => 0,
       'region' => 'content',
@@ -74,19 +79,9 @@ function commercedev_install() {
       'cache' => -1,
     ),
     array(
-      'module' => 'search',
-      'delta' => 'form',
-      'theme' => 'garland',
-      'status' => 1,
-      'weight' => -1,
-      'region' => 'sidebar_first',
-      'pages' => '',
-      'cache' => -1,
-    ),
-    array(
       'module' => 'node',
       'delta' => 'recent',
-      'theme' => 'seven',
+      'theme' => $admin_theme,
       'status' => 1,
       'weight' => 10,
       'region' => 'dashboard_main',
@@ -94,31 +89,21 @@ function commercedev_install() {
       'cache' => -1,
     ),
     array(
+      'module' => 'commerce_cart',
+      'delta' => 'cart',
+      'theme' => $default_theme,
+      'status' => 1,
+      'weight' => 0,
+      'region' => 'sidebar_first',
+      'pages' => '',
+      'cache' => -1,
+    ),
+    array(
       'module' => 'user',
       'delta' => 'login',
-      'theme' => 'garland',
+      'theme' => $default_theme,
       'status' => 1,
-      'weight' => 0,
-      'region' => 'sidebar_first',
-      'pages' => '',
-      'cache' => -1,
-    ),
-    array(
-      'module' => 'system',
-      'delta' => 'navigation',
-      'theme' => 'garland',
-      'status' => 1,
-      'weight' => 0,
-      'region' => 'sidebar_first',
-      'pages' => '',
-      'cache' => -1,
-    ),
-    array(
-      'module' => 'system',
-      'delta' => 'management',
-      'theme' => 'garland',
-      'status' => 1,
-      'weight' => 1,
+      'weight' => 10,
       'region' => 'sidebar_first',
       'pages' => '',
       'cache' => -1,
@@ -126,7 +111,7 @@ function commercedev_install() {
     array(
       'module' => 'system',
       'delta' => 'powered-by',
-      'theme' => 'garland',
+      'theme' => $default_theme,
       'status' => 1,
       'weight' => 10,
       'region' => 'footer',
@@ -136,7 +121,7 @@ function commercedev_install() {
     array(
       'module' => 'system',
       'delta' => 'help',
-      'theme' => 'garland',
+      'theme' => $default_theme,
       'status' => 1,
       'weight' => 0,
       'region' => 'help',
@@ -146,7 +131,7 @@ function commercedev_install() {
     array(
       'module' => 'system',
       'delta' => 'main',
-      'theme' => 'seven',
+      'theme' => $admin_theme,
       'status' => 1,
       'weight' => 0,
       'region' => 'content',
@@ -156,7 +141,7 @@ function commercedev_install() {
     array(
       'module' => 'system',
       'delta' => 'help',
-      'theme' => 'seven',
+      'theme' => $admin_theme,
       'status' => 1,
       'weight' => 0,
       'region' => 'help',
@@ -166,7 +151,7 @@ function commercedev_install() {
     array(
       'module' => 'user',
       'delta' => 'login',
-      'theme' => 'seven',
+      'theme' => $admin_theme,
       'status' => 1,
       'weight' => 10,
       'region' => 'content',
@@ -176,7 +161,7 @@ function commercedev_install() {
     array(
       'module' => 'user',
       'delta' => 'new',
-      'theme' => 'seven',
+      'theme' => $admin_theme,
       'status' => 1,
       'weight' => 0,
       'region' => 'dashboard_sidebar',
@@ -186,7 +171,7 @@ function commercedev_install() {
     array(
       'module' => 'search',
       'delta' => 'form',
-      'theme' => 'seven',
+      'theme' => $admin_theme,
       'status' => 1,
       'weight' => -10,
       'region' => 'dashboard_sidebar',
@@ -285,6 +270,9 @@ function commercedev_install() {
   variable_set('user_picture_file_size', '800');
   variable_set('user_picture_style', 'thumbnail');
 
+  // Allow visitor account creation with administrative approval.
+  variable_set('user_register', USER_REGISTER_VISITORS_ADMINISTRATIVE_APPROVAL);
+
   // Create a default vocabulary named "Tags", enabled for the 'article' content type.
   $description = st('Use tags to group articles on similar topics into categories.');
   $help = st('Enter a comma-separated list of words to describe your content.');
@@ -321,6 +309,16 @@ function commercedev_install() {
     'widget' => array(
       'type' => 'taxonomy_autocomplete',
       'weight' => 4,
+    ),
+    'display' => array(
+      'default' => array(
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 10,
+      ),
+      'teaser' => array(
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 10,
+      ),
     ),
   );
   field_create_instance($instance);
@@ -415,34 +413,14 @@ function commercedev_install() {
     ),
 
     'display' => array(
-      'full' => array(
+      'default' => array(
         'label' => 'hidden',
         'type' => 'image__large',
-        'settings' => array(),
         'weight' => -1,
       ),
       'teaser' => array(
         'label' => 'hidden',
         'type' => 'image_link_content__medium',
-        'settings' => array(),
-        'weight' => -1,
-      ),
-      'rss' => array(
-        'label' => 'hidden',
-        'type' => 'image__large',
-        'settings' => array(),
-        'weight' => -1,
-      ),
-      'search_index' => array(
-        'label' => 'hidden',
-        'type' => 'image__large',
-        'settings' => array(),
-        'weight' => -1,
-      ),
-      'search_results' => array(
-        'label' => 'hidden',
-        'type' => 'image__large',
-        'settings' => array(),
         'weight' => -1,
       ),
     ),
@@ -518,7 +496,6 @@ function commercedev_install() {
     'type' => 'commerce_product_reference',
     'cardinality' => 1,
     'translatable' => FALSE,
-    'locked' => TRUE,
   );
   field_create_field($field);
 
@@ -636,17 +613,4 @@ function commercedev_install() {
     $node->field_product[LANGUAGE_NONE][]['product_id'] = $product->product_id;
     node_save($node);
   }
-
-  // Set some default block positioning.
-  db_update('block')
-    ->fields(array('status' => 0))
-    ->condition('module', 'search')
-    ->condition('delta', 'form')
-    ->execute();
-
-  db_update('block')
-    ->fields(array('status' => 1, 'region' => 'sidebar_second'))
-    ->condition('module', 'commerce_cart')
-    ->condition('delta', 'cart')
-    ->execute();
 }
