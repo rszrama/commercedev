@@ -613,4 +613,9 @@ function commercedev_install() {
     $node->field_product[LANGUAGE_NONE][]['product_id'] = $product->product_id;
     node_save($node);
   }
+
+  // Enable the Rule for the Null Payment payment method.
+  $rules_config = rules_config_load('commerce_payment_commerce_payment_null');
+  $rules_config->active = TRUE;
+  $rules_config->save();
 }
