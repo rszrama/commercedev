@@ -564,7 +564,6 @@ function commercedev_install() {
   $set->links = array(
     array('link_path' => 'admin/commerce/products/add', 'link_title' => st('Add product')),
     array('link_path' => 'node/add/product', 'link_title' => st('Add product display')),
-    array('link_path' => 'node/add/tshirt', 'link_title' => st('Add t-shirt display')),
     array('link_path' => 'admin/commerce/products', 'link_title' => st('View products')),
     array('link_path' => 'admin/commerce/orders', 'link_title' => st('View orders')),
     array('link_path' => 'admin/commerce/config', 'link_title' => st('Configure store')),
