@@ -12,6 +12,7 @@ sure all the dependencies are in a valid modules directory for the site.
 
 DEPENDENCIES:
 
+http://drupal.org/project/addressfield
 http://drupal.org/project/admin_menu
 http://drupal.org/project/commerce
 http://drupal.org/project/entity
