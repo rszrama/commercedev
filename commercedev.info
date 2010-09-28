@@ -24,6 +24,7 @@ dependencies[] = rdf
 dependencies[] = simpletest
 
 ; Install other contributed modules first.
+dependencies[] = addressfield
 dependencies[] = admin_menu
 dependencies[] = entity
 dependencies[] = entity_metadata
@@ -37,6 +38,8 @@ dependencies[] = commerce
 dependencies[] = commerce_ui
 dependencies[] = commerce_cart
 dependencies[] = commerce_checkout
+dependencies[] = commerce_customer
+dependencies[] = commerce_customer_ui
 dependencies[] = commerce_line_item
 dependencies[] = commerce_line_item_ui
 dependencies[] = commerce_order
