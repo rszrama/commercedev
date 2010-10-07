@@ -239,7 +239,7 @@ function commercedev_install() {
       'mapping' => array(
         'rdftype' => array('sioc:Item', 'foaf:Document'),
         'field_image' => array(
-          'predicates' => array('rdfs:seeAlso'),
+          'predicates' => array('og:image', 'rdfs:seeAlso'),
           'type' => 'rel',
         ),
         'field_tags' => array(
@@ -292,7 +292,7 @@ function commercedev_install() {
     'settings' => array(
       'allowed_values' => array(
         array(
-          'vid' => $vocabulary->vid,
+          'vocabulary' => $vocabulary->machine_name,
           'parent' => 0,
         ),
       ),
@@ -308,7 +308,7 @@ function commercedev_install() {
     'description' => $vocabulary->help,
     'widget' => array(
       'type' => 'taxonomy_autocomplete',
-      'weight' => 4,
+      'weight' => -4,
     ),
     'display' => array(
       'default' => array(
@@ -390,7 +390,7 @@ function commercedev_install() {
     'entity_type' => 'node',
     'label' => 'Image',
     'bundle' => 'article',
-    'description' => 'Upload an image to go with this article.',
+    'description' => st('Upload an image to go with this article.'),
     'required' => FALSE,
 
     'settings' => array(
@@ -415,12 +415,14 @@ function commercedev_install() {
     'display' => array(
       'default' => array(
         'label' => 'hidden',
-        'type' => 'image__large',
+        'type' => 'image',
+        'settings' => array('image_style' => 'large', 'image_link' => ''),
         'weight' => -1,
       ),
       'teaser' => array(
         'label' => 'hidden',
-        'type' => 'image_link_content__medium',
+        'type' => 'image',
+        'settings' => array('image_style' => 'medium', 'image_link' => 'content'),
         'weight' => -1,
       ),
     ),
@@ -458,31 +460,36 @@ function commercedev_install() {
     'display' => array(
       'full' => array(
         'label' => 'hidden',
-        'type' => 'image_link_file__medium',
+        'type' => 'image',
+        'settings' => array('image_style' => 'medium', 'image_link' => 'file'),
         'settings' => array(),
         'weight' => -1,
       ),
       'line_item' => array(
         'label' => 'hidden',
-        'type' => 'image__thumbnail',
+        'type' => 'image',
+        'settings' => array('image_style' => 'thumbnail', 'image_link' => ''),
         'settings' => array(),
         'weight' => -1,
       ),
       'node_full' => array(
         'label' => 'hidden',
-        'type' => 'image_link_file__medium',
+        'type' => 'image',
+        'settings' => array('image_style' => 'medium', 'image_link' => 'file'),
         'settings' => array(),
         'weight' => -1,
       ),
       'node_teaser' => array(
         'label' => 'hidden',
-        'type' => 'image_link_content__thumbnail',
+        'type' => 'image',
+        'settings' => array('image_style' => 'thumbnail', 'image_link' => 'content'),
         'settings' => array(),
         'weight' => -1,
       ),
       'node_rss' => array(
         'label' => 'hidden',
-        'type' => 'image__medium',
+        'type' => 'image',
+        'settings' => array('image_style' => 'medium', 'image_link' => ''),
         'settings' => array(),
         'weight' => -1,
       ),
@@ -526,8 +533,9 @@ function commercedev_install() {
 
   // Enable default permissions for system roles.
   $filtered_html_permission = filter_permission_name($filtered_html_format);
-  user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, array('access content', $filtered_html_permission));
-  user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, array('access content', 'access comments', 'post comments', 'post comments without approval', $filtered_html_permission));
+  user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, array('access content', 'access comments', $filtered_html_permission));
+  user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, array('access content', 'access comments', 'post comments', 'skip comment approval', $filtered_html_permission));
+
 
   // Create a default role for site administrators, with all available permissions assigned.
   $admin_role = new stdClass();
