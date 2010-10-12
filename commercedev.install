@@ -208,10 +208,10 @@ function commercedev_install() {
       'locked' => 0,
     ),
     array(
-      'type' => 'product',
-      'name' => st('Product'),
+      'type' => 'product_display',
+      'name' => st('Product display'),
       'base' => 'node_content',
-      'description' => st('Use <em>products</em> to display products for sale to your customers.'),
+      'description' => st('Use <em>product displays</em> to present Add to Cart form for products to your customers.'),
       'custom' => 1,
       'modified' => 1,
       'locked' => 0,
