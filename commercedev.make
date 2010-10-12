@@ -19,6 +19,7 @@ projects[rules][download][type] = git
 projects[rules][download][url] = http://github.com/fago/rules.git
 projects[rules][download][revision] = "DRUPAL-7--2"
 
+projects[addressfield][subdir] = contrib
 projects[addressfield][version] = 1.0-alpha1
 
 projects[commerce_paypal][subdir] = contrib
@@ -31,12 +32,14 @@ projects[views][subdir] = contrib
 projects[views][type] = module
 projects[views][download][type] = cvs
 projects[views][download][module] = contributions/modules/views
+projects[views][download][revision] = "DRUPAL-7--3"
 projects[views][download][date] = 2010-10-07
 
-projects[commerce][type] = "module"
-projects[commerce][download][type] = "git"
+projects[commerce][subdir] = contrib
+projects[commerce][type] = module
+projects[commerce][download][type] = git
 ; The following line specifies the main Drupal Commerce repository on GitHub as
 ; the download source. To retrieve a different version, you can alter the URL,
 ; even using a private GitHub URL.
-projects[commerce][download][url] = "git://github.com/drupalcommerce/drupalcommerce.git"
+projects[commerce][download][url] = git://github.com/drupalcommerce/drupalcommerce.git
 
