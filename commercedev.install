@@ -261,8 +261,8 @@ function commercedev_install() {
   variable_set('node_submitted_page', FALSE);
 
   // Update "Product" comment and author information settings.
-  variable_set('comment_product', COMMENT_NODE_HIDDEN);
-  variable_set('node_submitted_product', FALSE);
+  variable_set('comment_product_display', COMMENT_NODE_HIDDEN);
+  variable_set('node_submitted_product_display', FALSE);
 
   // Enable user picture support and set the default to a square thumbnail option.
   variable_set('user_pictures', '1');
@@ -352,7 +352,7 @@ function commercedev_install() {
     'field_name' => 'taxonomy_' . $vocabulary->machine_name,
     'entity_type' => 'node',
     'label' => st('Catalog category'),
-    'bundle' => 'product',
+    'bundle' => 'product_display',
     'description' => '',
     'widget' => array(
       'type' => 'options_select',
@@ -510,7 +510,7 @@ function commercedev_install() {
     'field_name' => 'field_product',
     'entity_type' => 'node',
     'label' => 'Product',
-    'bundle' => 'product',
+    'bundle' => 'product_display',
     'description' => 'Choose a product to display for sale.',
     'required' => TRUE,
 
@@ -571,7 +571,7 @@ function commercedev_install() {
   $set->title = st('Store administration');
   $set->links = array(
     array('link_path' => 'admin/commerce/products/add', 'link_title' => st('Add product')),
-    array('link_path' => 'node/add/product', 'link_title' => st('Add product display')),
+    array('link_path' => 'node/add/product-display', 'link_title' => st('Add product display')),
     array('link_path' => 'admin/commerce/products', 'link_title' => st('View products')),
     array('link_path' => 'admin/commerce/orders', 'link_title' => st('View orders')),
     array('link_path' => 'admin/commerce/config', 'link_title' => st('Configure store')),
@@ -613,7 +613,7 @@ function commercedev_install() {
     $product = commerce_product_save($product);
 
     // Create a product node for it.
-    $node = (object) array('type' => 'product');
+    $node = (object) array('type' => 'product_display');
     node_object_prepare($node);
     $node->uid = 1;
     $node->title = $product->title;
