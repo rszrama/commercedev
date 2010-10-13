@@ -105,7 +105,7 @@ function commercedev_install() {
       'status' => 1,
       'weight' => 10,
       'region' => 'sidebar_first',
-      'pages' => '',
+      'pages' => "cart\ncheckout/*",
       'cache' => -1,
     ),
     array(
