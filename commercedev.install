@@ -623,8 +623,8 @@ function commercedev_install() {
     node_save($node);
   }
 
-  // Enable the Rule for the Null Payment payment method.
-  $rules_config = rules_config_load('commerce_payment_commerce_payment_null');
+  // Enable the Rule for the example payment method.
+  $rules_config = rules_config_load('commerce_payment_commerce_payment_example');
   $rules_config->active = TRUE;
   $rules_config->save();
 }
