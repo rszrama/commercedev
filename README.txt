@@ -16,6 +16,7 @@ DEPENDENCIES:
 http://drupal.org/project/addressfield
 http://drupal.org/project/admin_menu
 http://drupal.org/project/commerce
+http://drupal.org/project/ctools
 http://drupal.org/project/entity
 http://drupal.org/project/rules
 http://drupal.org/project/views
