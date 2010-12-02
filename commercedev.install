@@ -63,11 +63,8 @@ function commercedev_install() {
   $full_html_format = (object) $full_html_format;
   filter_format_save($full_html_format);
 
-  // Set the default theme to Bartik.
-  variable_set('theme_default', 'bartik');
-
   // Enable some standard blocks.
-  $default_theme = 'bartik';
+  $default_theme = variable_get('theme_default', 'bartik');
   $admin_theme = 'seven';
   $values = array(
     array(
@@ -239,7 +236,6 @@ function commercedev_install() {
       'type' => 'node',
       'bundle' => 'article',
       'mapping' => array(
-        'rdftype' => array('sioc:Item', 'foaf:Document'),
         'field_image' => array(
           'predicates' => array('og:image', 'rdfs:seeAlso'),
           'type' => 'rel',
@@ -538,7 +534,6 @@ function commercedev_install() {
   user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, array('access content', 'access comments', $filtered_html_permission));
   user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, array('access content', 'access comments', 'post comments', 'skip comment approval', $filtered_html_permission));
 
-
   // Create a default role for site administrators, with all available permissions assigned.
   $admin_role = new stdClass();
   $admin_role->name = 'administrator';
@@ -552,6 +547,14 @@ function commercedev_install() {
   db_insert('users_roles')
     ->fields(array('uid' => 1, 'rid' => $admin_role->rid))
     ->execute();
+
+  // Create a Home link in the main menu.
+  $item = array(
+    'link_title' => 'Home',
+    'link_path' => '<front>',
+    'menu_name' => 'main-menu',
+  );
+  menu_link_save($item);
 
   // Update the menu router information.
   menu_rebuild();
@@ -627,7 +630,8 @@ function commercedev_install() {
   }
 
   // Enable the Rule for the example payment method.
-  $rules_config = rules_config_load('commerce_payment_commerce_payment_example');
-  $rules_config->active = TRUE;
-  $rules_config->save();
+  if ($rules_config = rules_config_load('commerce_payment_commerce_payment_example')) {
+    $rules_config->active = TRUE;
+    $rules_config->save();
+  }
 }
