@@ -608,8 +608,10 @@ function commercedev_install() {
     $product->sku = st('PROD-@num', array('@num' => $key));
     $product->title = st('Product @num', array('@num' => $value));
     $product->uid = 1;
-    $product->purchase_price[LANGUAGE_NONE][0]['price'] = $key * 10;
+
+    $product->purchase_price[LANGUAGE_NONE][0]['amount'] = $key * 10;
     $product->purchase_price[LANGUAGE_NONE][0]['currency_code'] = 'USD';
+
     $product = commerce_product_save($product);
 
     // Create a product node for it.
