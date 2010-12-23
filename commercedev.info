@@ -24,6 +24,7 @@ dependencies[] = overlay
 dependencies[] = field_ui
 dependencies[] = file
 dependencies[] = rdf
+dependencies[] = php
 dependencies[] = simpletest
 
 ; Install other contributed modules first.
