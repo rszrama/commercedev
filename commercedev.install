@@ -566,6 +566,10 @@ function commercedev_install() {
   // Collapse fieldsets on the modules page using Admin Menu's setting.
   variable_set('admin_menu_tweak_modules', TRUE);
 
+  // Give checkout access to anonymous and authenticated users.
+  user_role_grant_permissions(1, array('access checkout'));
+  user_role_grant_permissions(2, array('access checkout'));
+
   // Add a shortcut set for store administration.
   $set = new stdClass;
   $set->title = st('Store administration');
