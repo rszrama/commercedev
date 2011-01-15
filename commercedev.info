@@ -56,5 +56,6 @@ dependencies[] = commerce_product
 dependencies[] = commerce_product_ui
 dependencies[] = commerce_product_reference
 dependencies[] = commerce_product_reference_ui
+dependencies[] = commerce_tax
 
 files[] = commercedev.profile
