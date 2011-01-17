@@ -25,6 +25,9 @@ projects[commerce_paypal][download][type] = cvs
 projects[commerce_paypal][download][module] = contributions/modules/commerce_paypal
 projects[commerce_paypal][download][revision] = HEAD
 
+projects[ctools][subdir] = contrib
+projects[ctools][type] = module
+
 projects[views][subdir] = contrib
 projects[views][type] = module
 projects[views][download][type] = cvs
