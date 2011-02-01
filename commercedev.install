@@ -613,8 +613,8 @@ function commercedev_install() {
     $product->title = st('Product @num', array('@num' => $value));
     $product->uid = 1;
 
-    $product->purchase_price[LANGUAGE_NONE][0]['amount'] = $key * 10;
-    $product->purchase_price[LANGUAGE_NONE][0]['currency_code'] = 'USD';
+    $product->commerce_price[LANGUAGE_NONE][0]['amount'] = $key * 10;
+    $product->commerce_price[LANGUAGE_NONE][0]['currency_code'] = 'USD';
 
     $product = commerce_product_save($product);
 
