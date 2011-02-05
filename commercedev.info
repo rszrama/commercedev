@@ -54,8 +54,9 @@ dependencies[] = commerce_payment_example
 dependencies[] = commerce_price
 dependencies[] = commerce_product
 dependencies[] = commerce_product_ui
+dependencies[] = commerce_product_pricing
+dependencies[] = commerce_product_pricing_ui
 dependencies[] = commerce_product_reference
-dependencies[] = commerce_product_reference_ui
 dependencies[] = commerce_tax
 
 files[] = commercedev.profile
