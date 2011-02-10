@@ -567,8 +567,8 @@ function commercedev_install() {
   variable_set('admin_menu_tweak_modules', TRUE);
 
   // Give checkout access to anonymous and authenticated users.
-  user_role_grant_permissions(1, array('access checkout'));
-  user_role_grant_permissions(2, array('access checkout'));
+  user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, array('access checkout'));
+  user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, array('access checkout', 'view own orders'));
 
   // Add a shortcut set for store administration.
   $set = new stdClass;
