@@ -12,7 +12,6 @@ Place this profile into the profiles/commercedev directory of your site and make
 sure all the dependencies are in a valid modules directory for the site.
 
 DEPENDENCIES:
-
 http://drupal.org/project/addressfield
 http://drupal.org/project/admin_menu
 http://drupal.org/project/commerce
@@ -21,9 +20,10 @@ http://drupal.org/project/entity
 http://drupal.org/project/rules
 http://drupal.org/project/views
 
-Using Drush Make:
+DRUSH:
+This installation profile includes a drush makefile:
+$ git clone git://github.com/aidanlister/commercedev.git commercedevprofile
+$ drush make commercedevprofile/commercedev.make commercedev
+$ mv commercedevprofile/ commercedev/profiles/commercedev
+... and install as per normal.
 
-To use drush make download the file build.make. Then use the following command
-to build a development snapshot:
-
-drush make build.make

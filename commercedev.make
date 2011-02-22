@@ -6,11 +6,6 @@ projects[drupal][download][type] = git
 projects[drupal][download][url] = "git://git.drupalcode.org/project/drupal.git"
 projects[drupal][download][branch] = master
 
-projects[commercedev][type] = "profile"
-projects[commercedev][download][type] = git
-projects[commercedev][download][url] = "git://github.com/aidanlister/commercedev.git"
-projects[commercedev][download][branch] = master
-
 projects[admin_menu][subdir] = contrib
 projects[admin_menu][type] = module
 projects[admin_menu][download][type] = git
