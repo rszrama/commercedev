@@ -1,38 +1,57 @@
 api = 2
 core = 7.x
 
+projects[drupal][type] = core
+projects[drupal][download][type] = git
+projects[drupal][download][url] = "git://git.drupalcode.org/project/drupal.git"
+projects[drupal][download][branch] = master
+
+projects[commercedev][type] = "profile"
+projects[commercedev][download][type] = git
+projects[commercedev][download][url] = "git://github.com/aidanlister/commercedev.git"
+projects[commercedev][download][branch] = master
+
 projects[admin_menu][subdir] = contrib
 projects[admin_menu][type] = module
+projects[admin_menu][download][type] = git
+projects[admin_menu][download][url] = "git://git.drupalcode.org/project/admin_menu.git"
+projects[admin_menu][download][branch] = master
 
 projects[entity][subdir] = contrib
 projects[entity][type] = module
-projects[entity][download][type] = cvs
-projects[entity][download][module] = contributions/modules/entity
-projects[entity][download][revision] = DRUPAL-7--1
+projects[entity][download][type] = git
+projects[entity][download][url] = "git://git.drupalcode.org/project/entity.git"
+projects[entity][download][branch] = "7.x-1.x"
 
 projects[rules][subdir] = contrib
 projects[rules][type] = module
-projects[rules][download][type] = cvs
-projects[rules][download][module] = contributions/modules/rules
-projects[rules][download][revision] = DRUPAL-7--2
+projects[rules][download][type] = git
+projects[rules][download][url] = "git://git.drupalcode.org/project/rules.git"
+projects[rules][download][branch] = "7.x-2.x"
 
 projects[addressfield][subdir] = contrib
-projects[addressfield][version] = 1.0-alpha1
+projects[addressfield][type] = module
+projects[addressfield][download][type] = git
+projects[addressfield][download][url] = "git://git.drupalcode.org/project/addressfield.git"
+projects[addressfield][download][branch] = master
 
 projects[commerce_paypal][subdir] = contrib
 projects[commerce_paypal][type] = module
-projects[commerce_paypal][download][type] = cvs
-projects[commerce_paypal][download][module] = contributions/modules/commerce_paypal
-projects[commerce_paypal][download][revision] = HEAD
+projects[commerce_paypal][download][type] = git
+projects[commerce_paypal][download][url] = "git://git.drupalcode.org/project/commerce_paypal.git"
+projects[commerce_paypal][download][branch] = master
 
 projects[ctools][subdir] = contrib
 projects[ctools][type] = module
+projects[ctools][download][type] = git
+projects[ctools][download][url] = "git://git.drupalcode.org/project/ctools.git"
+projects[ctools][download][branch] = master
 
 projects[views][subdir] = contrib
 projects[views][type] = module
-projects[views][download][type] = cvs
-projects[views][download][module] = contributions/modules/views
-projects[views][download][revision] = "DRUPAL-7--3"
+projects[views][download][type] = git
+projects[views][download][url] = "git://git.drupalcode.org/project/views.git"
+projects[views][download][branch] = "7.x-3.x"
 
 projects[commerce][subdir] = contrib
 projects[commerce][type] = module
@@ -40,5 +59,6 @@ projects[commerce][download][type] = git
 ; The following line specifies the main Drupal Commerce repository on GitHub as
 ; the download source. To retrieve a different version, you can alter the URL,
 ; even using a private GitHub URL.
-projects[commerce][download][url] = git://github.com/drupalcommerce/drupalcommerce.git
+projects[commerce][download][url] = git://github.com/rszrama/drupalcommerce.git
+projects[commerce][download][branch] = master
 
