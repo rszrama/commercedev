@@ -21,9 +21,7 @@ http://drupal.org/project/rules
 http://drupal.org/project/views
 
 DRUSH:
-This installation profile includes a drush makefile:
-$ git clone git://github.com/aidanlister/commercedev.git commercedevprofile
-$ drush make commercedevprofile/commercedev.make commercedev
-$ mv commercedevprofile/ commercedev/profiles/commercedev
+This installation profile includes a drush makefile, simply run: 
+$ drush make http://github.com/aidanlister/commercedev/raw/master/build.make commercedev
 ... and install as per normal.
 
