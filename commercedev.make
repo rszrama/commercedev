@@ -17,7 +17,10 @@ projects[rules][download][module] = contributions/modules/rules
 projects[rules][download][revision] = DRUPAL-7--2
 
 projects[addressfield][subdir] = contrib
-projects[addressfield][version] = 1.0-alpha1
+projects[addressfield][type] = module
+projects[addressfield][download][type] = cvs
+projects[addressfield][download][module] = contributions/modules/addressfield
+projects[addressfield][download][revision] = DRUPAL-7--1
 
 projects[commerce_paypal][subdir] = contrib
 projects[commerce_paypal][type] = module
@@ -27,12 +30,15 @@ projects[commerce_paypal][download][revision] = HEAD
 
 projects[ctools][subdir] = contrib
 projects[ctools][type] = module
+projects[ctools][download][type] = cvs
+projects[ctools][download][module] = contributions/modules/ctools
+projects[ctools][download][revision] = DRUPAL-7--1
 
 projects[views][subdir] = contrib
 projects[views][type] = module
 projects[views][download][type] = cvs
 projects[views][download][module] = contributions/modules/views
-projects[views][download][revision] = "DRUPAL-7--3"
+projects[views][download][revision] = DRUPAL-7--3
 
 projects[commerce][subdir] = contrib
 projects[commerce][type] = module
