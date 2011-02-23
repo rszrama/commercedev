@@ -1,11 +1,6 @@
 api = 2
 core = 7.x
 
-projects[drupal][type] = core
-projects[drupal][download][type] = git
-projects[drupal][download][url] = "git://git.drupalcode.org/project/drupal.git"
-projects[drupal][download][branch] = master
-
 projects[admin_menu][subdir] = contrib
 projects[admin_menu][type] = module
 projects[admin_menu][download][type] = git
