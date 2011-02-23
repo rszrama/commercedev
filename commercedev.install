@@ -517,6 +517,10 @@ function commercedev_install() {
     ),
 
     'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'type' => 'commerce_cart_add_to_cart_form',
+      ),
       'full' => array(
         'label' => 'hidden',
         'type' => 'commerce_cart_add_to_cart_form',
