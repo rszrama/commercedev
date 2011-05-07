@@ -36,6 +36,12 @@ projects[ctools][download][type] = git
 projects[ctools][download][url] = git://git.drupalcode.org/project/ctools.git
 projects[ctools][download][branch] = 7.x-1.x
 
+projects[views][subdir] = contrib
+projects[views][type] = module
+projects[views][download][type] = git
+projects[views][download][url] = git://git.drupalcode.org/project/views.git
+projects[views][download][branch] = 7.x-3.x
+
 projects[commerce][subdir] = contrib
 projects[commerce][type] = module
 projects[commerce][download][type] = git
