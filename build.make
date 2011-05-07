@@ -6,4 +6,4 @@ projects[drupal][type] = core
 
 projects[commercedev][type] = "profile"
 projects[commercedev][download][type] = "git"
-projects[commercedev][download][url] = "http://github.com/rszrama/commercedev.git"
+projects[commercedev][download][url] = "http://github.com/DominicBoettger/commercedev.git"
