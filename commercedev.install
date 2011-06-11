@@ -572,7 +572,7 @@ function commercedev_install() {
 
   // Give checkout access to anonymous and authenticated users.
   user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, array('access checkout'));
-  user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, array('access checkout', 'view own orders'));
+  user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, array('access checkout'));
 
   // Add a shortcut set for store administration.
   $set = new stdClass;
@@ -620,7 +620,7 @@ function commercedev_install() {
     $product->commerce_price[LANGUAGE_NONE][0]['amount'] = $key * 1000;
     $product->commerce_price[LANGUAGE_NONE][0]['currency_code'] = 'USD';
 
-    $product = commerce_product_save($product);
+    commerce_product_save($product);
 
     // Create a product node for it.
     $node = (object) array('type' => 'product_display');
