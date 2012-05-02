@@ -590,9 +590,6 @@ function commercedev_install() {
   shortcut_set_assign_user($set, (object) array('uid' => 1));
 
   // Create some dummy Catalog taxonomy terms.
-  /**
-   * TODO: Debug this code so it actually creates taxonomy terms.
-   *
   $terms = array(
     st('Coffee holders') => st('Porcelain mugs connecting your lips to the finest coffee your money can brew.'),
     st('Conference swag') => st('Stuff to pick up at conferences and take home to your kids and left-behind office mates.'),
@@ -601,13 +598,13 @@ function commercedev_install() {
 
   foreach ($terms as $name => $description) {
     taxonomy_term_save((object) array(
+      'tid' => NULL,
       'vid' => 2,
       'name' => $name,
       'description' => $description,
-      'format' => 2,
+      'format' => 'filtered_html',
     ));
   }
-   **/
 
   // Create some dummy Commerce products and product nodes.
   foreach (array('01' => st('One'), '02' => st('Two'), '03' => st('Three')) as $key => $value) {
