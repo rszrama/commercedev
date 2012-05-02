@@ -26,4 +26,4 @@ Using Drush Make:
 To use drush make download the file build.make. Then use the following command
 to build a development snapshot:
 
-drush make build.make
+drush make build.make www --working-copy
